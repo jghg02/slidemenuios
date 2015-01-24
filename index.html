@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Slidemenuios by jghg02</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/jghg02/slidemenuios">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Slidemenuios</h1>
+            <h2>Ejemplo de Implementacion de un Slide Menu para iOS</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/jghg02/slidemenuios/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/jghg02/slidemenuios/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="slide-menu-ios" class="anchor" href="#slide-menu-ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slide Menu iOS.</h1>
+
+<p>Para poder crear un <strong>slide menu</strong> en necesario importar la libreria <a href="https://github.com/John-Lluch/SWRevealViewController"><strong>SWRevealViewController</strong></a></p>
+
+<p>1.- Creamos un grupo en nuestro proyecto y copiaremos los siguientes archivos <strong>SWRevealViewController.h</strong> y <strong>SWRevealViewController.m</strong> dentro de nuestro proyecto. </p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/1.png" alt=""></p>
+
+<p>2.- Creamos nuestro <em>StoryBoard</em> tanto para <strong>iPhone</strong> como para <strong>iPad</strong></p>
+
+<p>3.- Para poder que el slide menu se puede integrar a nuesta app. el <strong>StoryBoard</strong> debe estar configurado de una forma especifica la cual es:</p>
+
+<ul>
+<li>Se debe crear un <strong>ViewController</strong> haciendo referencia a la clase <strong>SWRevealViewController</strong> </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/2.png" alt=""></p>
+
+<p><strong>Importante:</strong> Este <em>ViewController</em> debe ser el principal (<strong>is initial View Controller</strong>)</p>
+
+<p>4.- Se deben agregar un nuevo <strong>ViewController</strong> y un <strong>NavigationController</strong> a nuesto <em>StoryBoard</em> </p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/3.png" alt=""></p>
+
+<p>5.- Creamos el <strong>Segue</strong> entre nuestro view controller inicial el  view controller que hemos agregado. Es importante que ese <strong>Segue</strong> que hemos creado la clase debe ser <strong>SWRevealViewControllerSegueSetController</strong> de tipo <strong>Custom</strong> y con identifier <strong>sw_right</strong> (Menu derecho)</p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/4.png" alt=""></p>
+
+<p>6.- Luego creamos otro <strong>Segue</strong> que va de nuestro view controller inical al <strong>Navigation Controller</strong>. La clase debe ser <strong>SWRevealViewControllerSegueSetController</strong> tipo <strong>Custom</strong> y con Identifier <strong>sw_front</strong></p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/5.png" alt=""></p>
+
+<p>7.- Luego creo el <strong>Segue</strong> entre el <strong>Navigation Controller</strong> y mi <strong>View Controller</strong> donde esta la vista con la informacion que voy a presentar al usuario.</p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/6.png" alt=""></p>
+
+<p><strong>Esta es la configuracion que se hace par colocar un menu derecho</strong></p>
+
+<p>Ya teniendo todo esto vamos al <strong>viewDidLoad</strong> de nuestro controlador y seteamos nuestro icono en el <em>Navigation Bar</em> de nuestra app. </p>
+
+<p>Lo primero que creasmo es nuestro <em>Botton</em> de la siguiente manera:</p>
+
+<pre><code>    UIButton *configButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, self.navigationController.navigationBar.frame.size.height - 20)];
+</code></pre>
+
+<p>Aqui creamos nuestro Botton seteandole la posision dentro del Navigation Bar.</p>
+
+<p>Le colocamos un color de fondo y una imagen.</p>
+
+<pre><code>[configButton setBackgroundColor:[UIColor blackColor]];
+[configButton setBackgroundImage:[UIImage imageNamed:@"icon_setting.png"] forState:UIControlStateNormal];
+</code></pre>
+
+<p>Seteamos el boton del lado derecho de nuesta Navigation Bar.</p>
+
+<pre><code>    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:configButton];
+</code></pre>
+
+<p>Ahora le vamos a especificar el <strong>target</strong> y el <strong>selector</strong> para que al momento de hacer tap sobre este boton se vea el menu que creamos en el <em>StoryBoard</em></p>
+
+<pre><code>[configButton addTarget:self.revealViewController action:@selector( rightRevealToggle: ) forControlEvents:UIControlEventTouchUpInside];
+</code></pre>
+
+<p><strong>Importante:</strong>  Para poder hacer esto es necesario realizar el import de la libreria <strong>SWRevealViewController</strong> de la siguente manera:</p>
+
+<pre><code>#import "SWRevealViewController.h"
+</code></pre>
+
+<p>Si quieres setear el ancho del menu, agregamos la siguiente linea.</p>
+
+<pre><code>self.revealViewController.rightViewRevealWidth = 100;
+</code></pre>
+
+<p>Ejecutamos y este es e resultado.</p>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/7.png" alt=""></p>
+
+<p><strong>Important</strong></p>
+
+<p>Si se quiere agregar el gesto para que puedas ver el menu, solo necesitas agregar esta linea de código. </p>
+
+<pre><code>[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+</code></pre>
+
+<h2>
+<a id="ipad" class="anchor" href="#ipad" aria-hidden="true"><span class="octicon octicon-link"></span></a>iPAD</h2>
+
+<p><img src="https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/8.png" alt=""></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/jghg02">jghg02</a> can be found on <a href="https://github.com/jghg02/slidemenuios">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
