@@ -71,7 +71,16 @@ Si quieres setear el ancho del menu, agregamos la siguiente linea.
 Ejecutamos y este es e resultado.
 
 ![](https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/7.png)
+
+__Important__
+
+Si se quiere agregar el gesto para que puedas ver el menu, solo necesitas agregar esta linea de código. 
+
+	[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 	
 
 
 
+##iPAD
+
+![](https://raw.githubusercontent.com/jghg02/slidemenuios/master/img/8.png)

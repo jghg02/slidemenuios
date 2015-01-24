@@ -17,6 +17,7 @@
 		D662FE4B1A72EFA3005BB4CD /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D662FE4A1A72EFA3005BB4CD /* Main-iPad.storyboard */; };
 		D662FE4E1A72EFEB005BB4CD /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D662FE4D1A72EFEB005BB4CD /* SWRevealViewController.m */; };
 		D662FE501A72F904005BB4CD /* icon_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = D662FE4F1A72F904005BB4CD /* icon_setting.png */; };
+		D6E0BC541A73E55200018FBC /* iPadController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0BC531A73E55200018FBC /* iPadController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		D662FE4C1A72EFEB005BB4CD /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		D662FE4D1A72EFEB005BB4CD /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		D662FE4F1A72F904005BB4CD /* icon_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_setting.png; sourceTree = "<group>"; };
+		D6E0BC521A73E55200018FBC /* iPadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadController.h; sourceTree = "<group>"; };
+		D6E0BC531A73E55200018FBC /* iPadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 		D662FE171A72ED8F005BB4CD = {
 			isa = PBXGroup;
 			children = (
+				D6E0BC511A73E52800018FBC /* iPadController */,
 				D662FE221A72ED8F005BB4CD /* SlideMenu */,
 				D662FE3C1A72ED90005BB4CD /* SlideMenuTests */,
 				D662FE211A72ED8F005BB4CD /* Products */,
@@ -144,6 +148,15 @@
 				D662FE4F1A72F904005BB4CD /* icon_setting.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		D6E0BC511A73E52800018FBC /* iPadController */ = {
+			isa = PBXGroup;
+			children = (
+				D6E0BC521A73E55200018FBC /* iPadController.h */,
+				D6E0BC531A73E55200018FBC /* iPadController.m */,
+			);
+			name = iPadController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +265,7 @@
 				D662FE291A72ED8F005BB4CD /* AppDelegate.m in Sources */,
 				D662FE261A72ED8F005BB4CD /* main.m in Sources */,
 				D662FE4E1A72EFEB005BB4CD /* SWRevealViewController.m in Sources */,
+				D6E0BC541A73E55200018FBC /* iPadController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +460,7 @@
 				D662FE451A72ED90005BB4CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D662FE461A72ED90005BB4CD /* Build configuration list for PBXNativeTarget "SlideMenuTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +469,7 @@
 				D662FE481A72ED90005BB4CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
